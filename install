@@ -1,4 +1,12 @@
 #!/bin/bash
 # Install all dependency
-
+clear all
+echo "installing dependency"
+echo "----------------------"
+echo ""
 pip install -r requirements.txt
+echo ""
+echo "running application script"
+echo "----------------------"
+echo ""
+python app.py runserver
