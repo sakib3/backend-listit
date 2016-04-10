@@ -2,8 +2,10 @@
 # Flask
 # ----------------------
 flask
-Flask-PyMongo==0.4.0
-
+flask-script
+mongoengine==0.10.6
+flask-mongoengine
+flask-cors
 # ----------------------
 # Testing
 # ----------------------
