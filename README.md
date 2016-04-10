@@ -1,20 +1,12 @@
-Flask Heroku
-============
+# [Listit Backend](backend-listit.herokuapp.com) v1.0.0
+Listit Backend is responsible to provide json data to function list items app.
 
+### Post Request
 
+Use the following command in Terminal:
+```sh
+$ curl -X POST -d '{"email":"sakib3@gmail.com","password":"12323"}' http://localhost:5000/employees/ --header "Content-Type:application/json"
+```
 
-
-             ##
- #########  ###
-  ##     #   ##                     :GG   DG
-  ##         ##                     :EE   EE                        ;E
-  ##         ##                     :EE  KK                         ;E
-  ##         ##                     :EE                             ;E
-  ##   #     ##     ####     ####   :EEEEEEG   KEEEE     WE  WEEE;  ;E   EE EE   EE  
-  ######     ##    ##  #f   #   #   :EE   EE  GEf;tEK  EEKK EEfiEE, ;E  fE  EE   EE  
-  ##   #     ##        #l   ##            EE  KE   tE  EK   E;   EE ;E  E,  EE   EE  
-  ##         ##       ##a    ###          EK  EEEEEEE  EK   E    KE ;EEEE   EE   EE  
-  ##         ##    ##  #s     ###         EK  EE       EK   E    KE ;E EE   EE   EE  
-  ##         ##   ##   #k       ##   E    EE  EE       EK   E,   EK ;E  KE  EE   EE  
-  ##         ##   ##   ##W  #   #:   E    EK  ;EK.,EK  EK   EE,:EE, ;E   ED KE.,EEE  
- #####      #####  ### W#   ####,         EK   ,KEEE   K#    DEEK.  iK   WK  KEEE.   
+### Created by
+[Sabbir Rahman Sakib]()
