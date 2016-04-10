@@ -5,7 +5,7 @@ from flask import make_response
 host = os.environ['MONGO_URI'] if 'MONGO_URI' in os.environ else 'mongodb://localhost:27017/listit'
 db_name = os.environ['MONGO_DBNAME'] if 'MONGO_DBNAME' in os.environ else 'listit'
 
-connect(db_name, host='mongodb://localhost:27017/listit')
+connect(db_name, host=host)
 class CustomQuerySet(QuerySet):
 
     def get_or_404(self):
