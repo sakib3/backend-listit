@@ -13,19 +13,6 @@ CORS(app)
 def home():
   return send_response('Listit! :D')
 
-@app.errorhandler(404)
-def page_not_found(e):
-    status_code = 404
-    error = 'Not found'
-    message = 'No content found'
-    return send_error(error, message, status_code)
-
-@app.errorhandler(400)
-def page_not_found(e):
-    status_code = 400
-    error = 'Not found'
-    message = 'No content found'
-    return send_error(error, message, status_code)
-
+from errors import *
 if __name__ == '__main__':
     app.run(debug=True)
