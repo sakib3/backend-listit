@@ -60,8 +60,9 @@ class Employee(Document):
                 raise ValidationError
             
 class Product(Document):
-    name = StringField()
+    name = StringField(required=True)
     family = StringField()
+    meta = {'queryset_class': CustomQuerySet}
 
     def serialize(self):
         return {
@@ -69,3 +70,9 @@ class Product(Document):
             'name' : self.name,
             'family' : self.family
         }
+
+    def clean(self):
+            """Ensures that email, password is present and
+            automatically sets the pub_date if published and not set"""
+            if self.name is None:
+                raise ValidationError
