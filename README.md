@@ -11,5 +11,9 @@ Create New Product:
 ```sh
 $ curl -X POST -d '{"name":"milk","family":"liquid"}' http://localhost:5000/api/v1/products/ --header "Content-Type:application/json"
 ```
+Create New Workplace:
+```sh
+$ curl -X POST -d '{"name":"Tinbjerg","city_name":"Copenhagen","post_code":"2700"}' http://localhost:5000/api/v1/workplaces/ --header "Content-Type:application/json"
+```
 ### Created by
 [Sabbir Rahman Sakib]()

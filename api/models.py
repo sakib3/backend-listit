@@ -77,3 +77,24 @@ class Product(Document):
             """Ensures that name is present """
             if self.name is None:
                 raise ValidationError
+
+class Workplace(Document):
+    name = StringField(required=True)
+    address = StringField(required=True)
+    city_name = StringField(required=True)
+    post_code = IntField(required=True)
+    meta = {'queryset_class': CustomQuerySet}
+
+    def serialize(self):
+        return {
+            'id' : str(self.id),
+            'name' : self.name,
+            'address' : self.address,
+            'city_name' : self.city_name,
+            'post_code' : self.post_code
+        }
+
+    def clean(self):
+            """Ensures that name is present """
+            if self.name is None or self.address is None or self.city_name is None or self.post_code is None:
+                raise ValidationError
