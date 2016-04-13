@@ -1,6 +1,7 @@
 import os, json
 from mongoengine import *
 from flask import make_response
+from . helpers import *
 
 host = os.environ['MONGO_URI'] if 'MONGO_URI' in os.environ else 'mongodb://localhost:27017/listit'
 db_name = os.environ['MONGO_DBNAME'] if 'MONGO_DBNAME' in os.environ else 'listit'
@@ -15,8 +16,10 @@ class CustomQuerySet(QuerySet):
         if query_result_found:
             return json.dumps(self.get().serialize())
         else:
-            query_response =  make_response(json.dumps( {'error' : 'not found'} ), 404)
-            return query_response
+            status_code = 404
+            error = 'Not found'
+            message = 'No content found'
+            return send_error(error, message, status_code)
 
 
     def get_all(self):
@@ -54,8 +57,7 @@ class Employee(Document):
         }
 
     def clean(self):
-            """Ensures that email, password is present and
-            automatically sets the pub_date if published and not set"""
+            """Ensures that email, password is present """
             if self.email is None or self.password is None:
                 raise ValidationError
             
@@ -72,7 +74,6 @@ class Product(Document):
         }
 
     def clean(self):
-            """Ensures that email, password is present and
-            automatically sets the pub_date if published and not set"""
+            """Ensures that name is present """
             if self.name is None:
                 raise ValidationError
