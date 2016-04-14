@@ -13,8 +13,13 @@ def employees():
 #get the employee
 @api.route('/employees/<employee_id>', methods=['GET'])
 def get_the_employee(employee_id):
+ try:
   return Employee.objects(id=employee_id).get_or_404()
-
+ except (KeyError, ValidationError):
+  status_code = 400
+  error = 'ValidationError'
+  message = 'Invalid Id'
+  return send_error(error, message, status_code)
 
 @api.route('/employees/', methods=['POST'])
 def new_employee():

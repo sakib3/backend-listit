@@ -12,13 +12,18 @@ def get_products():
 #get the product
 @api.route('/products/<product_id>', methods=['GET'])
 def get_the_product(product_id):
-  return Product.objects(id=product_id).get_or_404()
-
+	try:
+		return Product.objects(id=product_id).get_or_404()
+	except (KeyError, ValidationError):
+		status_code = 400
+		error = 'ValidationError'
+		message = 'Invalid Id'
+		return send_error(error, message, status_code)
 #create new product
 @api.route('/products/', methods=['POST'])
 def new_product():
 	json_data = request.get_json()
-	  
+
 	if json_data is None:
 		status_code = 400
 		error = 'Bad Request'
@@ -33,7 +38,7 @@ def new_product():
 			message = 'Product is created'
 			status_code = 201
 			return send_response(message, status_code)
-    
+
 
 		except (KeyError, ValidationError):
 			status_code = 400
