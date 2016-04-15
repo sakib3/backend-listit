@@ -2,6 +2,7 @@ import os, json
 from mongoengine import *
 from flask import make_response
 from . helpers import *
+from werkzeug.security import generate_password_hash, check_password_hash
 
 host = os.environ['MONGO_URI'] if 'MONGO_URI' in os.environ else 'mongodb://localhost:27017/listit'
 db_name = os.environ['MONGO_DBNAME'] if 'MONGO_DBNAME' in os.environ else 'listit'
@@ -42,6 +43,12 @@ class Employee(Document):
     confirmed = BooleanField(default=False)
     meta = {'queryset_class': CustomQuerySet}
 
+    def set_password(self, password):
+        self.password = generate_password_hash(password)
+
+    def verify_password(self, password):
+        return check_password(self.password, password)
+
     def serialize(self):
         return {
             'id' : str(self.id),
@@ -60,7 +67,8 @@ class Employee(Document):
             """Ensures that email, password is present """
             if self.email is None or self.password is None:
                 raise ValidationError
-            
+            self.password = generate_password_hash(self.password)
+
 class Product(Document):
     name = StringField(required=True)
     family = StringField()

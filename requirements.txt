@@ -6,6 +6,7 @@ flask-script
 mongoengine==0.10.6
 flask-mongoengine
 flask-cors
+Werkzeug
 # ----------------------
 # Testing
 # ----------------------
