@@ -9,4 +9,4 @@ echo ""
 echo "running application script"
 echo "----------------------"
 echo ""
-python app.py runserver
+mongod & python app.py runserver && fg 
